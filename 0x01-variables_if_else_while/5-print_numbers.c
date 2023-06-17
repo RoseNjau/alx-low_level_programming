@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 /**
- * main - Starting Point
- * Retun: 0 (void)
+ * main - Start
+ * Return: 0 (Void)
  */
 
 int main(void)
