@@ -5,8 +5,8 @@
 #include <stdio.h>
 
 /**
- * main - Starting Point
- * Return 0 (void)
+ * main - Start
+ * Return: 0 (void)
  */
 
 int main(void)
