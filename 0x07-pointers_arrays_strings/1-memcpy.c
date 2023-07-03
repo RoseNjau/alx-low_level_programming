@@ -1,31 +1,24 @@
 #include <stdio.h>
 
 /**
- * _memcpy - Copies 'n' bytes from 'src' to 'dest'
- * @dest: Pointer to the destination array
- * @src: Pointer to the source array
- * @n: Number of bytes to be copied
+ * _memcpy - Copies 'n' bytes from the source memory to destination memory.
  *
- * Return: Pointer to the destination array
+ * @dest: Pointer to the destination memory area.
+ * @src: Pointer to the source memory area.
+ * @n: Number of bytes to be copied.
+ *
+ * Return: Pointer to the destination memory area.
  */
 char *_memcpy(char *dest, char *src, unsigned int n)
 {
 	char *original_dest = dest;
 
-	while (n--)
-		*dest++ = *src++;
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
+	{
+		dest[i] = src[i];
+	}
 
 	return (original_dest);
 }
-int main(void)
-{
-	char src[] = "Hello, world!";
-	char dest[20];
-
-	_memcpy(dest, src, sizeof(src));
-
-	printf("Copied string: %s\n", dest);
-
-	return (0);
-}
-
