@@ -6,8 +6,7 @@
  * @s: String to be searched.
  * @accept: String of acceptable bytes.
  *
- * Return: Number of bytes in the first segment
- * of s 
+ * Return: Number of bytes in the first segment 
  */
 unsigned int _strspn(char *s, char *accept)
 {
