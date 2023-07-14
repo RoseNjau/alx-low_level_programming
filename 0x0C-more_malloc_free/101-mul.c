@@ -1,67 +1,101 @@
-#include <stdio.h>
+#include "main.h"
 #include <stdlib.h>
-#include <ctype.h>
+#include <stdio.h>
+
+#define ERR_MSG "Error"
 
 /**
- * is_digit - Inspects if string is a positive number
- * @str: Input string
+ * is_digit - checks if string contains a char that is non-digit
+ * @s: string to evaluate
  *
- * Return: 1 if a string is a valid positive number, 0 otherwise
+ * Return: 0 when a non-digit is found, 1 otherwise
  */
-int is_digit(const char *str)
+int is_digit(char *s)
 {
-	int i;
+	int i = 0;
 
-	for (i = 0; str[i] != '\0'; i++)
+	while (s[i])
 	{
-		if (!isdigit(str[i]))
+		if (s[i] < '0' || s[i] > '9')
 			return (0);
+		i++;
 	}
-
 	return (1);
 }
 
 /**
- * multiply - Multiplies two positive numbers
- * @num1: First number
- * @num2: Second number
+ * _strlen - returns a string's length
+ * @s: string to be evaluated
  *
- * Return: Multiplication result
+ * Return: the string's length
  */
-unsigned long int multiply(unsigned long int num1, unsigned long int num2)
+int _strlen(char *s)
 {
-	return (num1 * num2);
+	int i = 0;
+
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }
 
 /**
- * main - Entry point of the program
- * @argc: Number of command-line arguments
- * @argv: Command-line argument strings arrays
+ * errors - handles errors for main
+ */
+void errors(void)
+{
+	printf("Error\n");
+	exit(98);
+}
+
+/**
+ * main - multiplies two positive numbers
+ * @argc: number of arguments
+ * @argv: array of arguments
  *
- * Return: 0 on success, 98 on error
+ * Return: always 0 (Success)
  */
 int main(int argc, char *argv[])
 {
-	unsigned long int num1, num2, result;
+	char *s1, *s2;
+	int len1, len2, len, i, carry, digit1, digit2, *result, a = 0;
 
-	if (argc != 3)
+	s1 = argv[1], s2 = argv[2];
+	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
+		errors();
+	len1 = _strlen(s1);
+	len2 = _strlen(s2);
+	len = len1 + len2 + 1;
+	result = malloc(sizeof(int) * len);
+	if (!result)
+		return (1);
+	for (i = 0; i <= len1 + len2; i++)
+		result[i] = 0;
+	for (len1 = len1 - 1; len1 >= 0; len1--)
 	{
-		printf("Error\n");
-		return (98);
+		digit1 = s1[len1] - '0';
+		carry = 0;
+		for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
+		{
+			digit2 = s2[len2] - '0';
+			carry += result[len1 + len2 + 1] + (digit1 * digit2);
+			result[len1 + len2 + 1] = carry % 10;
+			carry /= 10;
+		}
+		if (carry > 0)
+			result[len1 + len2 + 1] += carry;
 	}
-
-	if (!is_digit(argv[1]) || !is_digit(argv[2]))
+	for (i = 0; i < len - 1; i++)
 	{
-		printf("Error\n");
-		return (98);
+		if (result[i])
+			a = 1;
+		if (a)
+			_putchar(result[i] + '0');
 	}
-
-	num1 = strtoul(argv[1], NULL, 10);
-	num2 = strtoul(argv[2], NULL, 10);
-
-	result = multiply(num1, num2);
-
-	printf("%lu\n", result);
-
+	if (!a)
+		_putchar('0');
+	_putchar('\n');
+	free(result);
 	return (0);
 }
