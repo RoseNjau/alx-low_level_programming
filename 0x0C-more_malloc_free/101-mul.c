@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "main.h"
 
 /**
- * is_digit - Checks if a string is a valid positive number
- * @str: The input string
+ * is_digit - Inspects if string is a positive number
+ * @str: Input string
  *
- * Return: 1 if the string is a valid positive number, 0 otherwise
+ * Return: 1 if a string is a valid positive number, 0 otherwise
  */
 int is_digit(const char *str)
 {
@@ -24,10 +23,10 @@ int is_digit(const char *str)
 
 /**
  * multiply - Multiplies two positive numbers
- * @num1: The first number
- * @num2: The second number
+ * @num1: First number
+ * @num2: Second number
  *
- * Return: The multiplication result
+ * Return: Multiplication result
  */
 unsigned long int multiply(unsigned long int num1, unsigned long int num2)
 {
@@ -36,8 +35,8 @@ unsigned long int multiply(unsigned long int num1, unsigned long int num2)
 
 /**
  * main - Entry point of the program
- * @argc: The number of command-line arguments
- * @argv: An array of command-line argument strings
+ * @argc: Number of command-line arguments
+ * @argv: Command-line argument strings arrays
  *
  * Return: 0 on success, 98 on error
  */
@@ -66,4 +65,3 @@ int main(int argc, char *argv[])
 
 	return (0);
 }
-
